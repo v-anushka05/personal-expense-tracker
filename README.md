@@ -162,7 +162,9 @@ curl -X PUT http://localhost:5001/expenses/<id> \
 curl -X DELETE http://localhost:5001/expenses/<id>
 ```
 # 🖼 Screenshots
-(Add screenshots of your working application here for visual reference)
+![Home Page](Screenshot%202025-06-20%20162435.png)
+![Edit Expense](Screenshot%202025-06-20%20162510.png)
+
 
 # 🤝 Contributing
 Contributions are welcome! Feel free to submit a pull request.

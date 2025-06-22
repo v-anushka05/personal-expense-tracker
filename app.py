@@ -11,25 +11,43 @@ load_dotenv()
 app = Flask(__name__, template_folder='templates')
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# MongoDB connection
-try:
-    print("Connecting to MongoDB...")
-    client = MongoClient(os.getenv("MONGO_URI"), serverSelectionTimeoutMS=5000)  # 5 second timeout
-    # Test the connection
-    client.server_info()  # Will raise an exception if connection fails
-    print("Successfully connected to MongoDB")
-    
-    db = client['expense_tracker']
-    expenses_collection = db['expenses']
-    
-    # Create indexes if they don't exist
-    expenses_collection.create_index([("date", -1)])  # Index for sorting by date
-    expenses_collection.create_index([("category", 1)])  # Index for filtering by category
-    
-except Exception as e:
-    print(f"Error connecting to MongoDB: {str(e)}")
-    print(f"Using connection string: {os.getenv('MONGO_URI').split('@')[-1]}")
-    raise
+def get_database():
+    """Get database connection, with test environment support."""
+    if os.getenv('TESTING') == 'True':
+        # Use a mock database for testing
+        from unittest.mock import MagicMock
+        mock_db = MagicMock()
+        mock_db.expenses = MagicMock()
+        return mock_db
+        
+    # Use real MongoDB in non-test environments
+    try:
+        print("Connecting to MongoDB...")
+        client = MongoClient(os.getenv("MONGO_URI"), serverSelectionTimeoutMS=5000)  # 5 second timeout
+        # Test the connection
+        client.server_info()  # Will raise an exception if connection fails
+        print("Successfully connected to MongoDB")
+        
+        db = client['expense_tracker']
+        expenses_collection = db['expenses']
+        
+        # Create indexes if they don't exist
+        try:
+            expenses_collection.create_index([("date", -1)])  # Index for sorting by date
+            expenses_collection.create_index([("category", 1)])  # Index for filtering by category
+        except Exception as e:
+            print(f"Warning: Could not create indexes: {e}")
+            print("This is normal when running tests")
+            
+        return db
+        
+    except Exception as e:
+        print(f"Error connecting to MongoDB: {str(e)}")
+        print(f"Using connection string: {os.getenv('MONGO_URI', 'Not set').split('@')[-1]}")
+        raise
+
+# Initialize database connection
+expenses_collection = get_database().expenses
 
 def serialize_expense(expense):
     """Convert ObjectId to string for JSON serialization"""

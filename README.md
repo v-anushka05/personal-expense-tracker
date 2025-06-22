@@ -1,51 +1,39 @@
-# Personal Expense Tracker
+# 🧾 Personal Expense Tracker
+A modern web application to track personal expenses with a clean, responsive interface, full CRUD functionality, and REST API integration.
 
-A modern web application to track personal expenses with a clean, responsive interface and full CRUD functionality.
+# 🚀 Features
+✅ Add, view, edit, and delete expenses  
+✅ Categorize expenses (Food, Transport, Shopping, Bills, Entertainment, Other)  
+✅ Search and filter expenses in real-time  
+✅ Responsive design (works on mobile, tablet, desktop)  
+✅ Modern dark theme UI  
+✅ Full API integration with MongoDB backend  
+✅ Comprehensive test coverage (85% overall)
 
-## Features
+# 🛠 Tech Stack
+## Frontend
+- HTML5, CSS3, JavaScript (Vanilla)
+- Bootstrap 5, Bootstrap Icons
 
-- Add, view, edit, and delete expenses
-- Categorize expenses
-- Search and filter expenses
-- Responsive design that works on all devices
-- Real-time updates
-- Modern dark theme
-- Comprehensive test coverage
+## Backend
+- Python with Flask
+- MongoDB Atlas (Cloud MongoDB)
 
-## Tech Stack
+## Testing
+- Pytest, Pytest-cov
+- Pytest-mock, Mongomock
 
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla), Bootstrap 5, Bootstrap Icons
-- **Backend**: Python (Flask)
-- **Database**: MongoDB Atlas
-- **Testing**: Pytest, Pytest-cov, Pytest-mock, Mongomock
-- **CI/CD**: GitHub Actions (optional)
+## Development
+- Local development setup (localhost)
+- GitHub Actions (CI/CD)
 
-## Project Structure
-
-```
-personal-expense-tracker/
-├── app.py                # Main application file
-├── requirements.txt      # Production dependencies
-├── requirements-dev.txt  # Development dependencies
-├── tests/                # Test files
-│   ├── unit/            # Unit tests
-│   ├── integration/     # Integration tests
-│   ├── api/             # API tests
-│   └── conftest.py      # Test configuration
-├── templates/            # HTML templates
-└── README.md            # Project documentation
-```
-
-## Getting Started
-
-### Prerequisites
-
+# 🚦 Getting Started
+## Prerequisites
 - Python 3.8+
-- MongoDB (local or MongoDB Atlas)
+- MongoDB Atlas account (or local MongoDB)
 - pip (Python package manager)
 
-### Installation
-
+## Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/personal-expense-tracker.git
@@ -54,8 +42,14 @@ personal-expense-tracker/
 
 2. Create and activate a virtual environment:
    ```bash
+   # Create
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   
+   # Activate
+   # Windows:
+   venv\Scripts\activate
+   # Mac/Linux:
+   source venv/bin/activate
    ```
 
 3. Install dependencies:
@@ -64,51 +58,37 @@ personal-expense-tracker/
    pip install -r requirements-dev.txt  # For development
    ```
 
-4. Set up environment variables:
-   Create a `.env` file in the root directory with the following content:
+4. Configure environment variables:
+   Create a `.env` file in the root directory:
    ```
    MONGO_URI=your_mongodb_connection_string
    FLASK_APP=app.py
    FLASK_ENV=development
    ```
 
-### Running the Application
-
+## Running the Application
 ```bash
+python app.py
+# or
 flask run --port=5001
 ```
 
 Visit `http://localhost:5001` in your browser.
 
-## Testing
-
-### Running All Tests with Coverage
-
-To run all tests and see the coverage report:
-
+# 🧪 Testing
+## Running Tests
 ```bash
+# Run all tests with coverage
 pytest --cov=app --cov=tests --cov-report=term-missing -v
+
+# Run specific test types
+pytest tests/unit/          # Unit tests
+pytest tests/integration/   # Integration tests
+pytest tests/api/           # API tests
 ```
 
-To run specific test types:
-
-```bash
-# Run unit tests
-pytest tests/unit/
-
-# Run integration tests
-pytest tests/integration/
-
-# Run API tests
-pytest tests/api/
-```
-
-### Test Coverage
-
-All tests are passing. We maintain at least 70% coverage as required.
+## Test Coverage
 **Current coverage: 85%**
-
-![Test Coverage](image.png)
 
 ```
 ---------- coverage: platform win32, python 3.13.3-final-0 -----------
@@ -123,105 +103,117 @@ tests/unit/test_serialize_expense.py      21      0   100%
 TOTAL                                   307     45    85%
 ```
 
-### Test Types
+![Test Coverage](image.png)
 
+## Test Types
 - **Unit Tests:** Test serialization and business logic (`tests/unit/`)
 - **Integration Tests:** Test DB CRUD operations (`tests/integration/`)
 - **API Tests:** Test all API endpoints with mocking (`tests/api/`)
 
-### Testing Tools
-
-- Pytest
-- pytest-cov (for coverage)
-- unittest.mock (for mocking MongoDB and ObjectId)
-- mongomock (if used in integration tests)
-
-## API Documentation
-
-### Base URL
-
+# 🌐 API Documentation
+## Base URL
+```
 http://localhost:5001
+```
 
-### Endpoints
-
-#### 1️⃣ Get All Expenses
-
-- **URL**: `/expenses`
-- **Method**: `GET`
-- **Response**:
-  ```json
-  [
-    {
-      "_id": "60d5ec9e1c9d440000f2c1a1",
-      "description": "Grocery shopping",
-      "amount": 1500.50,
-      "category": "food",
-      "date": "2023-06-20"
-    }
-  ]
-  ```
-
-#### 2️⃣ Add New Expense
-
-- **URL**: `/expenses`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
+## Endpoints
+### 1️⃣ Get All Expenses
+**URL:** `/expenses`  
+**Method:** `GET`  
+**Response:**
+```json
+[
   {
-    "description": "Dinner",
-    "amount": 1200,
-    "category": "food",
-    "date": "2023-06-20"
+    "_id": "60d5ec9e1c9d440000f2c1a1",
+    "description": "Grocery shopping",
+    "amount": 1500.50,
+    "category": "Food",
+    "date": "2023-06-20",
+    "notes": "Weekly groceries"
   }
-  ```
-- **Response**:
-  ```json
-  {
-    "message": "Expense added successfully",
-    "id": "60d5ec9e1c9d440000f2c1a1"
-  }
-  ```
+]
+```
 
-#### 3️⃣ Update Expense
+### 2️⃣ Add New Expense
+**URL:** `/expenses`  
+**Method:** `POST`  
+**Request Body:**
+```json
+{
+  "description": "Dinner",
+  "amount": 1200,
+  "category": "Food",
+  "date": "2023-06-20",
+  "notes": "Dinner with friends"
+}
+```
+**Response:**
+```json
+{
+  "status": "success",
+  "expense_id": "60d5ec9e1c9d440000f2c1a1"
+}
+```
 
-- **URL**: `/expenses/<id>`
-- **Method**: `PUT`
-- **Request Body**: (Same as POST)
-- **Response**:
-  ```json
-  {
-    "message": "Expense updated successfully"
-  }
-  ```
+### 3️⃣ Update Expense
+**URL:** `/expenses/<expense_id>`  
+**Method:** `PUT`  
+**Request Body:** Same as POST  
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Expense updated successfully"
+}
+```
 
-#### 4️⃣ Delete Expense
+### 4️⃣ Delete Expense
+**URL:** `/expenses/<expense_id>`  
+**Method:** `DELETE`  
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Expense deleted successfully"
+}
+```
 
-- **URL**: `/expenses/<id>`
-- **Method**: `DELETE`
-- **Response**:
-  ```json
-  {
-    "message": "Expense deleted successfully"
-  }
-  ```
+# 🔎 Testing API with cURL
+```bash
+# Get all expenses
+curl http://localhost:5001/expenses
 
-## Contributing
+# Add new expense
+curl -X POST http://localhost:5001/expenses \
+  -H "Content-Type: application/json" \
+  -d '{"description": "Test Expense", "amount": 1000, "category": "Food", "date": "2023-06-20"}'
 
+# Update expense (replace <id>)
+curl -X PUT http://localhost:5001/expenses/<id> \
+  -H "Content-Type: application/json" \
+  -d '{"description": "Updated Expense", "amount": 1500, "category": "Food", "date": "2023-06-20"}'
+
+# Delete expense (replace <id>)
+curl -X DELETE http://localhost:5001/expenses/<id>
+```
+
+# 🖼 Screenshots
+![Home Page](Screenshot%202025-06-20%20162435.png)
+![Edit Expense](Screenshot%202025-06-20%20162510.png)
+
+# 🤝 Contributing
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
-
+# 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Assignment Notes
-
+## 📝 Assignment Notes
 - This repository contains unit, integration, and API tests for the Personal Expense Tracker API.
-- All tests are passing and overall test coverage is **85%** (see "Test Coverage" above).
-- See the API section for endpoint details.
-- For questions or issues, please refer to the documentation or open an issue.
+- All tests are passing with **85%** test coverage.
+- See the API section for endpoint details and testing instructions.

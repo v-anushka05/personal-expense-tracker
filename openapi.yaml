@@ -1,0 +1,126 @@
+openapi: 3.0.0
+info:
+  title: Personal Expense Tracker API
+  description: API for managing personal expenses
+  version: 1.0.0
+servers:
+  - url: http://localhost:5001
+    description: Development server
+paths:
+  /expenses:
+    get:
+      summary: Get all expenses
+      responses:
+        '200':
+          description: A list of expenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+    post:
+      summary: Add a new expense
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseInput'
+      responses:
+        '201':
+          description: Expense created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+  /expenses/{id}:
+    get:
+      summary: Get expense by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expense details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '404':
+          description: Expense not found
+    put:
+      summary: Update an expense
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseInput'
+      responses:
+        '200':
+          description: Expense updated successfully
+        '404':
+          description: Expense not found
+    delete:
+      summary: Delete an expense
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expense deleted successfully
+        '404':
+          description: Expense not found
+components:
+  schemas:
+    Expense:
+      type: object
+      properties:
+        _id:
+          type: string
+        amount:
+          type: number
+          format: float
+        category:
+          type: string
+        description:
+          type: string
+        date:
+          type: string
+          format: date
+    ExpenseInput:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: float
+        category:
+          type: string
+        description:
+          type: string
+        date:
+          type: string
+          format: date
+      required:
+        - amount
+        - category
+        - description
+        - date

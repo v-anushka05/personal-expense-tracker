@@ -1,0 +1,209 @@
+# http://localhost:5001/expenses (POST) - Status: 201
+curl -X POST \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'content-type: application/json' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: d891953a' \
+  -H 'accept: */*' \
+  -H 'origin: http://127.0.0.1:5001' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: http://127.0.0.1:5001/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -d '{"description":"formal shoes","amount":100,"category":"Shopping","date":"2025-06-27"}' \
+  'http://localhost:5001/expenses'
+
+# Response Body: {
+  "id": "685e44117c71dda805ccc389",
+  "message": "Expense added successfully"
+}
+
+
+# http://localhost:5001/expenses (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: aa64bb55' \
+  -H 'accept: */*' \
+  -H 'origin: http://127.0.0.1:5001' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: http://127.0.0.1:5001/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  'http://localhost:5001/expenses'
+
+# Response Body: [
+  {
+    "_id": "685521688ad90f704dca0227",
+    "amount": 1000,
+    "category": "Food",
+    "date": "2025-06-20",
+    "description": "Dominos"
+  },
+  {
+    "_id": "6855416519fdbf99961becdc",
+    "amount": 800,
+    "category": "Bills",
+    "date": "2025-06-20",
+    "description": "Water Bill"
+  },
+  {
+    "_id": "685e44117c71dda805ccc389",
+    "amount": 100,
+    "category": "Shopping",
+    "date": "2025-06-27",
+    "description": "formal shoes"
+  }
+]
+
+
+# http://localhost:5001/expenses/6855416519fdbf99961becdc (DELETE) - Status: 200
+curl -X DELETE \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 716cf10c' \
+  -H 'accept: */*' \
+  -H 'origin: http://127.0.0.1:5001' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: http://127.0.0.1:5001/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  'http://localhost:5001/expenses/6855416519fdbf99961becdc'
+
+# Response Body: {
+  "message": "Expense deleted successfully"
+}
+
+
+# http://localhost:5001/expenses (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 4558a83f' \
+  -H 'accept: */*' \
+  -H 'origin: http://127.0.0.1:5001' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: http://127.0.0.1:5001/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  'http://localhost:5001/expenses'
+
+# Response Body: [
+  {
+    "_id": "685521688ad90f704dca0227",
+    "amount": 1000,
+    "category": "Food",
+    "date": "2025-06-20",
+    "description": "Dominos"
+  },
+  {
+    "_id": "685e44117c71dda805ccc389",
+    "amount": 100,
+    "category": "Shopping",
+    "date": "2025-06-27",
+    "description": "formal shoes"
+  }
+]
+
+
+# http://localhost:5001/expenses/685521688ad90f704dca0227 (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 60dc2357' \
+  -H 'accept: */*' \
+  -H 'origin: http://127.0.0.1:5001' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: http://127.0.0.1:5001/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  'http://localhost:5001/expenses/685521688ad90f704dca0227'
+
+# Response Body: {
+  "_id": "685521688ad90f704dca0227",
+  "amount": 1000,
+  "category": "Food",
+  "date": "2025-06-20",
+  "description": "Dominos"
+}
+
+
+# http://localhost:5001/expenses/685521688ad90f704dca0227 (PUT) - Status: 200
+curl -X PUT \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'content-type: application/json' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 7b869fcd' \
+  -H 'accept: */*' \
+  -H 'origin: http://127.0.0.1:5001' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: http://127.0.0.1:5001/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -d '{"description":"Dominos","amount":999,"category":"Food","date":"2025-06-20"}' \
+  'http://localhost:5001/expenses/685521688ad90f704dca0227'
+
+# Response Body: {
+  "message": "Expense updated successfully"
+}
+
+
+# http://localhost:5001/expenses (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 55c5a708' \
+  -H 'accept: */*' \
+  -H 'origin: http://127.0.0.1:5001' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: http://127.0.0.1:5001/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  'http://localhost:5001/expenses'
+
+# Response Body: [
+  {
+    "_id": "685521688ad90f704dca0227",
+    "amount": 999,
+    "category": "Food",
+    "date": "2025-06-20",
+    "description": "Dominos"
+  },
+  {
+    "_id": "685e44117c71dda805ccc389",
+    "amount": 100,
+    "category": "Shopping",
+    "date": "2025-06-27",
+    "description": "formal shoes"
+  }
+]
+
+

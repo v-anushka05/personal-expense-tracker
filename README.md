@@ -1,6 +1,82 @@
 # 🧾 Personal Expense Tracker
 A modern web application to track personal expenses with a clean, responsive interface, full CRUD functionality, and REST API integration.
 
+---
+
+## 📦 Assignment Submission – Keploy AI Testing & CI/CD
+
+### OpenAPI Schema
+See [`openapi.yaml`](./openapi.yaml).
+
+### Keploy API Testing (Chrome Extension)
+- API tested using the Keploy Chrome Extension and [https://app.keploy.io](https://app.keploy.io)
+- Test cases generated for all CRUD endpoints.
+
+**Test Evidence:**
+![Keploy Test Report](./keploy-test-reports)
+
+### Postman API Test Results
+API endpoints were also tested using Postman for local verification.
+
+**Screenshot:**
+![Postman Test Results](./testimage.png)
+
+### Sample cURL Commands
+```sh
+# Create expense
+curl -X POST \
+  -H 'content-type: application/json' \
+  -d '{"description":"formal shoes","amount":100,"category":"Shopping","date":"2025-06-27"}' \
+  'http://localhost:5001/expenses'
+# List expenses
+curl -X GET 'http://localhost:5001/expenses'
+```
+
+### CI/CD Integration (GitHub Actions Example)
+> **Note:** Keploy CLI is not supported on Windows Docker Desktop due to kernel limitations. API testing was performed using the Chrome Extension and web platform. Example workflow below:
+
+```yaml
+name: Keploy API Test
+on: [push, pull_request]
+jobs:
+  keploy-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Show Keploy CLI Limitation
+        run: echo "Keploy CLI is not supported on Windows Docker Desktop. See README for details."
+```
+
+### Keploy Chrome Extension on Public Websites
+- [x] Used the Keploy Chrome Extension to record and generate tests on two public websites.
+
+**Test Evidence:**
+
+![Keploy Chrome Extension Test 1](./image1.png)
+- Website: Reqres.in
+- Action: Clicked "List Users" to trigger GET /api/users.
+
+![Keploy Chrome Extension Test 2](./image2.png)
+- Website: JSONPlaceholder
+- Action: Loaded /posts endpoint in browser to trigger GET /posts.
+
+> **Replace `image2.png` and descriptions above if you used a different site for your second test.**
+
+### Blog Post
+[Read my experience with Keploy API Testing](https://dev.to/anushka_verma_b98452a8d53/ai-driven-api-testing-with-keploy-my-experience-on-a-personal-expense-tracker-15og)
+
+
+### Social Media Post
+[My LinkedIn Post](https://www.linkedin.com/feed/update/urn:li:share:7344275440024375297/)
+
+
+### Notes
+- Keploy CLI recording/testing is not supported on Windows Docker Desktop (see [Keploy docs](https://docs.keploy.io/troubleshooting/limitations)).
+- All API tests were verified locally and with the Chrome Extension/web platform.
+
+---
+
+
 # 🚀 Features
 ✅ Add, view, edit, and delete expenses  
 ✅ Categorize expenses (Food, Transport, Shopping, Bills, Entertainment, Other)  
@@ -178,24 +254,71 @@ http://localhost:5001
 }
 ```
 
-# 🔎 Testing API with cURL
-```bash
-# Get all expenses
-curl http://localhost:5001/expenses
+# 📑 OpenAPI Schema
+See [`openapi.yaml`](./openapi.yaml) for the complete API specification.
 
-# Add new expense
-curl -X POST http://localhost:5001/expenses \
-  -H "Content-Type: application/json" \
-  -d '{"description": "Test Expense", "amount": 1000, "category": "Food", "date": "2023-06-20"}'
+# 🤖 Keploy API Testing (Chrome Extension)
+- API tested using the Keploy Chrome Extension and [https://app.keploy.io](https://app.keploy.io)
+- Test cases generated for all CRUD endpoints.
 
-# Update expense (replace <id>)
-curl -X PUT http://localhost:5001/expenses/<id> \
-  -H "Content-Type: application/json" \
-  -d '{"description": "Updated Expense", "amount": 1500, "category": "Food", "date": "2023-06-20"}'
+**Test Evidence:**
+![Keploy Test Report](./keploy-test-reports)
 
-# Delete expense (replace <id>)
-curl -X DELETE http://localhost:5001/expenses/<id>
+# 🧪 Postman API Test Results
+API endpoints were also tested using Postman for local verification.
+
+**Screenshot:**
+![Postman Test Results](./testimage.png)
+
+# 📝 Sample cURL Commands
+```sh
+# Create expense
+curl -X POST \
+  -H 'content-type: application/json' \
+  -d '{"description":"formal shoes","amount":100,"category":"Shopping","date":"2025-06-27"}' \
+  'http://localhost:5001/expenses'
+
+# List expenses
+curl -X GET 'http://localhost:5001/expenses'
 ```
+
+# ⚙️ CI/CD Integration (GitHub Actions Example)
+> **Note:** Keploy CLI is not supported on Windows Docker Desktop due to kernel limitations. API testing was performed using the Chrome Extension and web platform. Example workflow below:
+
+```yaml
+name: Keploy API Test
+on: [push, pull_request]
+jobs:
+  keploy-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Show Keploy CLI Limitation
+        run: echo "Keploy CLI is not supported on Windows Docker Desktop. See README for details."
+```
+
+# 🌐 Keploy Chrome Extension on Public Websites
+- [x] Used the Keploy Chrome Extension to record and generate tests on two public websites.
+
+**Test Evidence:**
+
+![Keploy Chrome Extension Test 1](./image1.png)
+- Website: Reqres.in
+- Action: Clicked "List Users" to trigger GET /api/users.
+
+![Keploy Chrome Extension Test 2](./image2.png)
+- Website: JSONPlaceholder
+- Action: Loaded /posts endpoint in browser to trigger GET /posts.
+
+# 📝 Blog Post
+[Read my experience with Keploy API Testing](<YOUR_BLOG_LINK_HERE>)
+
+# 📢 Social Media Post
+[My LinkedIn/Twitter Post](<YOUR_SOCIAL_LINK_HERE>)
+
+# ℹ️ Notes
+- Keploy CLI recording/testing is not supported on Windows Docker Desktop (see [Keploy docs](https://docs.keploy.io/troubleshooting/limitations)).
+- All API tests were verified locally and with the Chrome Extension/web platform.
 
 # 🖼 Screenshots
 ![Home Page](Screenshot%202025-06-20%20162435.png)
@@ -217,3 +340,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - This repository contains unit, integration, and API tests for the Personal Expense Tracker API.
 - All tests are passing with **85%** test coverage.
 - See the API section for endpoint details and testing instructions.
+
+**Assignment complete!**

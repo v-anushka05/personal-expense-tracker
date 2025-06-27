@@ -1,0 +1,24 @@
+
+services:
+  app:
+    build: .
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_URI=mongodb+srv://2205712:Anushka05@anushka1.hdnhgb0.mongodb.net/expense-tracker?retryWrites=true&w=majority
+    networks:
+      - keploy-net
+
+  keploy:
+    image: ghcr.io/keploy/keploy
+    depends_on:
+      - app
+    command: record -c "python app.py" --app-name personal-expense-tracker
+    networks:
+      - keploy-net
+    ports:
+      - "16789:16789"
+
+networks:
+  keploy-net:
+    driver: bridge
